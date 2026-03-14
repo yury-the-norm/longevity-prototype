@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Exact colors from Figma */
+  --bg:       #1c1d21;
+  --bg2:      #13131A;
+  --surface:  rgba(255,255,255,0.04);
+  --surface2: rgba(255,255,255,0.08);
+  --border:   rgba(255,255,255,0.1);
+  --text:     #fdfffc;
+  --muted:    rgba(253,255,252,0.6);
+  --accent:   #78c8c9;
+  --accent2:  #78a0d1;
+  --cta-grad: linear-gradient(135deg, #78a0d1, #78c8c9);
+  --critical: #ff2056;
+  --warn:     #e67e22;
+  --gold:     #d4af37;
+  --optimal:  #05df72;
+  --green2:   #00d492;
+  --red2:     #ff6b6b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0; padding: 0;
+  background: #0e0e12;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+.annotation-badge {
+  position: absolute;
+  top: 8px; left: 8px;
+  background: rgba(255,32,86,0.15);
+  border: 1px solid rgba(255,32,86,0.4);
+  color: #FF2056;
+  font-size: 9px;
+  font-family: 'DM Mono', monospace;
+  padding: 2px 6px;
+  border-radius: 4px;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.screen-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grad-bg {
+  background: linear-gradient(160deg, #1c1d21 0%, #13131A 100%);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.metric-dot-critical { background: var(--critical); }
+.metric-dot-warn     { background: var(--warn); }
+.metric-dot-optimal  { background: var(--optimal); }

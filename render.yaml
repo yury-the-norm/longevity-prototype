@@ -2,7 +2,7 @@ services:
   - type: web
     name: longevity-prototype
     env: static
-    buildCommand: npm install && npm run build
+    buildCommand: rm -rf node_modules && npm install && npm run build
     staticPublishPath: ./dist
     envVars:
       - key: VITE_APP_PASSWORD

@@ -4,7 +4,6 @@ services:
     env: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
-    nodeVersion: 20.11.0
     envVars:
       - key: VITE_APP_PASSWORD
         sync: false

@@ -38,7 +38,7 @@ function BioageRing({ size = 100 }) {
     { rx: 34, ry: 44, stroke: '#69B3D3', opacity: 0.3 },
   ]
   return (
-    <svg width={size} height={size} style={{ position: 'absolute', inset: 0 }}>
+    <svg width={size} height={size} style={{ position: 'absolute', inset: 0, textAlign: 'center' }}>
       {ovals.map((o, i) => (
         <ellipse
           key={i}
@@ -105,7 +105,7 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
           {/* Center: Bioage — 43 (largest) + BIOAGE */}
           <div style={{ position: 'relative', width: 130, height: 130, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <BioageRing size={130} />
-            <span style={{ position: 'relative', zIndex: 1, fontSize: 58, fontWeight: 600, color: '#ffffff', lineHeight: 1 }}>{BIO.bioAge}</span>
+            <span style={{ position: 'relative', zIndex: 1, fontSize: 54, fontWeight: 300, color: '#ffffff', lineHeight: 1 }}>{BIO.bioAge}</span>
             <div style={{ position: 'relative', zIndex: 1, fontSize: 10, fontWeight: 500, color: '#ffffff', letterSpacing: '0.08em', marginTop: 4 }}>BIOAGE</div>
           </div>
 

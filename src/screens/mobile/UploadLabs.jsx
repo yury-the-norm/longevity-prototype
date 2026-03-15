@@ -35,8 +35,9 @@ export default function UploadLabs({ onNext, annotationsVisible }) {
       <motion.div initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} transition={{delay:0.1}}
         style={{ border:'1.5px dashed rgba(120,200,201,0.35)', borderRadius:16,
           padding:'28px 20px', textAlign:'center', marginBottom:20, cursor:'pointer',
-          background:'rgba(120,200,201,0.04)', transition:'background 0.2s' }}
+          background:'rgba(120,200,201,0.04)' }}
         whileHover={{ background:'rgba(120,200,201,0.08)' }}
+        transition={{ duration:0.15 }}
       >
         <div style={{ width:48, height:48, borderRadius:12,
           background:'rgba(120,200,201,0.12)', border:'1px solid rgba(120,200,201,0.2)',
@@ -83,12 +84,13 @@ export default function UploadLabs({ onNext, annotationsVisible }) {
 
       <div style={{ flex:1 }} />
 
-      <motion.button whileTap={{scale:0.97}} onClick={handleProcess}
+      <motion.button whileHover={!processing ? { opacity:0.92 } : undefined} whileTap={{scale:0.97}} onClick={handleProcess}
         disabled={processing}
+        transition={{ duration:0.15 }}
         style={{ width:'100%', padding:'16px',
           background: processing ? 'rgba(120,200,201,0.4)' : 'linear-gradient(135deg,#78a0d1,#78c8c9)',
           border:'none', borderRadius:8, color:'#0a0a0a', fontSize:14, fontWeight:600,
-          cursor:'pointer', fontFamily:'inherit', transition:'background 0.3s',
+          cursor:'pointer', fontFamily:'inherit',
           display:'flex', alignItems:'center', justifyContent:'center', gap:8 }}>
         {processing ? (
           <>

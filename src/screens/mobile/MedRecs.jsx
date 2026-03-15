@@ -51,13 +51,12 @@ export default function MedRecs({ onNext, annotationsVisible }) {
         {filtered.map((p, i) => (
           <motion.div key={p.name}
             initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} transition={{delay:0.15+i*0.05}}
+            whileHover={{ background:'rgba(120,200,201,0.08)' }}
             onClick={onNext}
             style={{ display:'flex', alignItems:'center', justifyContent:'space-between',
               padding:'14px 16px', marginBottom:6,
               background:'rgba(255,255,255,0.04)', border:'1px solid rgba(255,255,255,0.07)',
-              borderRadius:12, cursor:'pointer', transition:'background 0.2s' }}
-            onMouseEnter={e => e.currentTarget.style.background='rgba(120,200,201,0.08)'}
-            onMouseLeave={e => e.currentTarget.style.background='rgba(255,255,255,0.04)'}
+              borderRadius:12, cursor:'pointer' }}
           >
             <div>
               <div style={{ fontSize:14, fontWeight:500, color:'#fdfffc', marginBottom:2 }}>{p.name}</div>
@@ -68,7 +67,8 @@ export default function MedRecs({ onNext, annotationsVisible }) {
         ))}
       </div>
 
-      <motion.button whileTap={{scale:0.97}} onClick={onNext}
+      <motion.button whileHover={{ opacity:0.85 }} whileTap={{scale:0.97}} onClick={onNext}
+        transition={{ duration:0.15 }}
         style={{ background:'none', border:'none', color:'rgba(253,255,252,0.5)',
           fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', padding:'12px', marginTop:8 }}>
         Not now

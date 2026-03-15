@@ -71,7 +71,7 @@ function MobileApp({ onBack, annotationsVisible }) {
         )}
       </AnimatePresence>
 
-      <button onClick={onBack} style={{
+      <button className="hover-icon-btn" onClick={onBack} style={{
         position:'absolute',top:14,right:14,zIndex:200,
         padding:'4px 10px', background:'rgba(0,0,0,0.5)', backdropFilter:'blur(8px)',
         border:'1px solid rgba(255,255,255,0.12)', borderRadius:6,

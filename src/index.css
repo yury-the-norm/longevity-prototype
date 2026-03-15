@@ -81,3 +81,33 @@ body {
 .metric-dot-critical { background: var(--critical); }
 .metric-dot-warn     { background: var(--warn); }
 .metric-dot-optimal  { background: var(--optimal); }
+
+/* Bio Age ring: infinite rotation via CSS (compositor, low cost) */
+.bioage-ring-rotate {
+  animation: bioage-ring-spin 10.67s linear infinite;
+  will-change: transform;
+}
+@keyframes bioage-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hover for clickable elements (same design system) */
+.hover-surface {
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.hover-surface:hover {
+  background: rgba(255,255,255,0.08) !important;
+}
+.hover-icon-btn {
+  transition: background 0.18s ease;
+}
+.hover-icon-btn:hover {
+  background: rgba(255,255,255,0.08) !important;
+}
+.hover-ghost {
+  transition: opacity 0.18s ease, background 0.18s ease;
+}
+.hover-ghost:hover {
+  opacity: 0.9;
+}

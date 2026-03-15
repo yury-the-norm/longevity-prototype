@@ -37,7 +37,8 @@ function MetricDetailPanel({ metric, onClose }) {
         zIndex:50, overflowY:'auto', paddingBottom:40 }}>
       {/* Header */}
       <div style={{ padding:'54px 24px 0', display:'flex', alignItems:'center', gap:14, marginBottom:20 }}>
-        <motion.button whileTap={{scale:0.9}} onClick={onClose}
+        <motion.button whileHover={{ background:'rgba(255,255,255,0.12)' }} whileTap={{scale:0.9}} onClick={onClose}
+          transition={{ duration:0.15 }}
           style={{ width:36, height:36, borderRadius:'50%', flexShrink:0,
             background:'rgba(255,255,255,0.06)', border:'1px solid rgba(255,255,255,0.1)',
             display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer', outline:'none' }}>
@@ -109,7 +110,8 @@ export default function MetricDetails({ onBack, annotationsVisible }) {
 
         {/* Top bar */}
         <div style={{ display:'flex', alignItems:'center', gap:12, padding:'54px 24px 0' }}>
-          <motion.button whileTap={{scale:0.9}} onClick={onBack}
+          <motion.button whileHover={{ background:'rgba(255,255,255,0.12)' }} whileTap={{scale:0.9}} onClick={onBack}
+            transition={{ duration:0.15 }}
             style={{ width:36, height:36, borderRadius:'50%', background:'rgba(255,255,255,0.06)',
               border:'1px solid rgba(255,255,255,0.1)', display:'flex', alignItems:'center', justifyContent:'center',
               cursor:'pointer', outline:'none' }}>
@@ -152,7 +154,7 @@ export default function MetricDetails({ onBack, annotationsVisible }) {
             Tap a metric to see detail
           </div>
           {METRICS.map((m,i) => (
-            <motion.div key={m.id} whileTap={{scale:0.97}}
+            <motion.div key={m.id} whileHover={{ background:'rgba(255,255,255,0.08)' }} whileTap={{scale:0.97}}
               initial={{opacity:0,x:-8}} animate={{opacity:1,x:0}} transition={{delay:0.2+i*0.07}}
               onClick={()=>setActiveMetric(m)}
               style={{ padding:'14px 16px', background:'rgba(255,255,255,0.04)',

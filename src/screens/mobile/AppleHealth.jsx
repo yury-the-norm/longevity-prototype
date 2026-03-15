@@ -56,13 +56,15 @@ export default function AppleHealth({ onNext, annotationsVisible }) {
       <div style={{ flex:1 }} />
 
       <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
-        <motion.button whileTap={{scale:0.97}} onClick={onNext}
+        <motion.button whileHover={{ opacity:0.92 }} whileTap={{scale:0.97}} onClick={onNext}
+          transition={{ duration:0.15 }}
           style={{ width:'100%', padding:'16px', background:'linear-gradient(135deg,#78a0d1,#78c8c9)',
             border:'none', borderRadius:8, color:'#0a0a0a', fontSize:14, fontWeight:600,
             cursor:'pointer', fontFamily:'inherit' }}>
           Allow access
         </motion.button>
-        <motion.button whileTap={{scale:0.97}} onClick={onNext}
+        <motion.button whileHover={{ opacity:0.85 }} whileTap={{scale:0.97}} onClick={onNext}
+          transition={{ duration:0.15 }}
           style={{ background:'none', border:'none', color:'rgba(253,255,252,0.6)',
             fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', padding:'8px' }}>
           Not now

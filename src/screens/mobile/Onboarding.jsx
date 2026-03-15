@@ -56,7 +56,8 @@ export default function Onboarding({ onNext, annotationsVisible }) {
             {selected.length} / {MAX} Selected
           </div>
         </div>
-        <motion.button whileTap={{scale:0.9}} onClick={() => setSelected([])}
+        <motion.button whileHover={{ opacity:0.85 }} whileTap={{scale:0.9}} onClick={() => setSelected([])}
+          transition={{ duration:0.15 }}
           style={{ background:'none', border:'none', display:'flex', alignItems:'center', gap:4,
             color:'rgba(253,255,252,0.5)', fontSize:14, fontWeight:500, cursor:'pointer', fontFamily:'inherit' }}>
           <RotateCcw size={12} />
@@ -74,13 +75,14 @@ export default function Onboarding({ onNext, annotationsVisible }) {
           return (
             <motion.div key={goal.id}
               initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} transition={{delay:0.05*i}}
+              whileHover={!disabled ? { background: isSelected ? 'rgba(120,200,201,0.14)' : 'rgba(255,255,255,0.08)' } : undefined}
               whileTap={{scale:0.98}}
               onClick={() => !disabled && toggle(goal.id)}
               style={{ display:'flex', alignItems:'center', gap:12,
                 padding:'16px', borderRadius:12, cursor: disabled ? 'not-allowed' : 'pointer',
                 background: isSelected ? 'rgba(120,200,201,0.1)' : 'rgba(255,255,255,0.04)',
                 border: `1px solid ${isSelected ? 'rgba(120,200,201,0.35)' : 'rgba(255,255,255,0.07)'}`,
-                opacity: disabled ? 0.4 : 1, transition:'all 0.2s',
+                opacity: disabled ? 0.4 : 1,
               }}>
               {/* Number badge or check */}
               <div style={{ width:26, height:26, borderRadius:'50%', flexShrink:0,
@@ -108,14 +110,15 @@ export default function Onboarding({ onNext, annotationsVisible }) {
         })}
       </div>
 
-      <motion.button whileTap={{scale:0.97}} onClick={onNext}
+      <motion.button whileHover={selected.length > 0 ? { opacity:0.92 } : undefined} whileTap={{scale:0.97}} onClick={onNext}
         disabled={selected.length === 0}
+        transition={{ duration:0.15 }}
         style={{ width:'100%', padding:'16px', marginTop:16,
           background: selected.length > 0 ? 'linear-gradient(135deg,#78a0d1,#78c8c9)' : 'rgba(255,255,255,0.08)',
           border:'none', borderRadius:8,
           color: selected.length > 0 ? '#0a0a0a' : 'rgba(253,255,252,0.3)',
           fontSize:14, fontWeight:600, cursor: selected.length > 0 ? 'pointer' : 'not-allowed',
-          fontFamily:'inherit', transition:'all 0.25s' }}>
+          fontFamily:'inherit' }}>
         Continue
       </motion.button>
     </div>

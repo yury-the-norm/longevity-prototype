@@ -58,7 +58,7 @@ export default function TabletClients({ onSelectClient, annotationsVisible }) {
           </div>
           {/* Filter pills — Figma: Filter 1, 2, 3 color:#f2f2f2 on dark bg */}
           {['Select Date','Filter 1','Filter 2','Filter 3'].map((f,i) => (
-            <button key={i} style={{ padding:'7px 12px', borderRadius:8,
+            <button key={i} className="hover-surface" style={{ padding:'7px 12px', borderRadius:8,
               background: i===0 ? 'rgba(255,255,255,0.05)' : 'rgba(120,200,201,0.08)',
               border: `1px solid ${i===0 ? 'rgba(255,255,255,0.08)' : 'rgba(120,200,201,0.2)'}`,
               color: i===0 ? '#212b36' : '#f2f2f2',
@@ -150,7 +150,7 @@ export default function TabletClients({ onSelectClient, annotationsVisible }) {
           </div>
           <div style={{ display:'flex', gap:4 }}>
             {[1,2,3,4,15].map(n => (
-              <div key={n} style={{ width:28, height:28, borderRadius:6, display:'flex',
+              <div key={n} className="hover-surface" style={{ width:28, height:28, borderRadius:6, display:'flex',
                 alignItems:'center', justifyContent:'center', cursor:'pointer',
                 background: n===4 ? '#78c8c9' : 'transparent',
                 fontSize:12, color: n===4 ? '#0a0a0a' : '#9c9d9b' }}>

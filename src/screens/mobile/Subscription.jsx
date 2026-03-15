@@ -42,7 +42,8 @@ export default function Subscription({ onBack, annotationsVisible }) {
       <div className="screen-scroll" style={{ flex:1, padding:'52px 16px 100px' }}>
 
         {/* Back */}
-        <motion.button whileTap={{scale:0.85}} onClick={onBack}
+        <motion.button whileHover={{ background:'rgba(255,255,255,0.12)' }} whileTap={{scale:0.85}} onClick={onBack}
+          transition={{ duration:0.15 }}
           style={{ width:32, height:32, borderRadius:'50%', background:'rgba(255,255,255,0.06)',
             border:'1px solid rgba(255,255,255,0.1)', display:'flex', alignItems:'center', justifyContent:'center',
             cursor:'pointer', marginBottom:16 }}>
@@ -83,11 +84,11 @@ export default function Subscription({ onBack, annotationsVisible }) {
         {plans.map((plan, i) => (
           <motion.div key={plan.id}
             initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} transition={{delay:0.15+i*0.08}}
+            whileHover={{ background: selected===plan.id ? 'rgba(120,200,201,0.12)' : 'rgba(255,255,255,0.08)' }}
             onClick={() => setSelected(plan.id)}
             style={{ padding:'18px', marginBottom:10, borderRadius:14, cursor:'pointer',
               background: selected===plan.id ? 'rgba(120,200,201,0.08)' : 'rgba(255,255,255,0.04)',
               border:`1px solid ${selected===plan.id ? 'rgba(120,200,201,0.4)' : 'rgba(255,255,255,0.07)'}`,
-              transition:'all 0.2s',
             }}>
             <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:10 }}>
               <div style={{ fontSize:18, fontWeight:500, color:'#fdfffc', textTransform: plan.id==='core' ? 'lowercase' : 'none' }}>
@@ -105,7 +106,8 @@ export default function Subscription({ onBack, annotationsVisible }) {
                 </div>
               ))}
             </div>
-            <motion.button whileTap={{scale:0.97}}
+            <motion.button whileHover={{ opacity: plan.grad ? 0.92 : 0.9 }} whileTap={{scale:0.97}}
+              transition={{ duration:0.15 }}
               style={{ width:'100%', padding:'12px',
                 background: plan.grad ? 'linear-gradient(135deg,#78a0d1,#78c8c9)' : 'rgba(255,255,255,0.08)',
                 border: plan.grad ? 'none' : '1px solid rgba(255,255,255,0.15)',
@@ -118,7 +120,7 @@ export default function Subscription({ onBack, annotationsVisible }) {
 
         {/* How does it work */}
         <div style={{ textAlign:'center', padding:'8px 0' }}>
-          <span style={{ fontSize:14, fontWeight:500, color:'rgba(253,255,252,0.6)', cursor:'pointer' }}>
+          <span className="hover-ghost" style={{ fontSize:14, fontWeight:500, color:'rgba(253,255,252,0.6)', cursor:'pointer' }}>
             How does it work?
           </span>
           <span style={{ fontSize:12, color:'rgba(253,255,252,0.3)', marginLeft:6 }}>(Step-by-step guide)</span>

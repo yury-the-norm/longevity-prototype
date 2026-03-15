@@ -21,10 +21,11 @@ export default function MobileNav({ active, onTab }) {
         const Icon = tab.icon
         const isActive = active === tab.id
         return (
-          <motion.button key={tab.id} whileTap={{scale:0.85}} onClick={()=>onTab(tab.id)}
+          <motion.button key={tab.id} whileHover={{ background:'rgba(255,255,255,0.06)' }} whileTap={{scale:0.85}} onClick={()=>onTab(tab.id)}
+            transition={{ duration:0.15 }}
             style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', gap:4,
               padding:'6px 0', background:'transparent', border:'none', cursor:'pointer',
-              outline:'none', position:'relative' }}>
+              outline:'none', position:'relative', borderRadius:10 }}>
             {isActive && (
               <motion.div layoutId="tab-bg"
                 style={{ position:'absolute', inset:0, borderRadius:10, background:'rgba(120,200,201,0.1)' }}

@@ -10,7 +10,7 @@ function ClientHeader({ client, activeTab, onTab, onBack }) {
     <div style={{ background:'#19191b', borderBottom:'1px solid rgba(255,255,255,0.07)',
       padding:'16px 24px 0', flexShrink:0 }}>
       <div style={{ display:'flex', alignItems:'center', gap:14, marginBottom:16 }}>
-        <button onClick={onBack} style={{ background:'rgba(255,255,255,0.06)',
+        <button className="hover-icon-btn" onClick={onBack} style={{ background:'rgba(255,255,255,0.06)',
           border:'1px solid rgba(255,255,255,0.1)', borderRadius:'50%',
           width:36, height:36, display:'flex', alignItems:'center', justifyContent:'center',
           cursor:'pointer', outline:'none', flexShrink:0 }}>
@@ -35,12 +35,12 @@ function ClientHeader({ client, activeTab, onTab, onBack }) {
       {/* Tabs — Figma: Overview color:#78c8c9 (active), others rgba white */}
       <div style={{ display:'flex', gap:0 }}>
         {tabs.map(t => (
-          <button key={t} onClick={()=>onTab(t)}
+          <button key={t} className="hover-surface" onClick={()=>onTab(t)}
             style={{ padding:'10px 20px', background:'none', border:'none', cursor:'pointer',
               fontFamily:'inherit', fontSize:14, fontWeight:400,
               color: activeTab===t ? '#78c8c9' : 'rgba(255,255,255,0.5)',
               borderBottom:`2px solid ${activeTab===t ? '#78c8c9' : 'transparent'}`,
-              marginBottom:-1, outline:'none', transition:'all 0.15s' }}>
+              marginBottom:-1, outline:'none' }}>
             {t}
           </button>
         ))}
@@ -129,10 +129,10 @@ function OverviewTab() {
               <div style={{ fontSize:14, color:'rgba(255,255,255,0.5)' }}>Detailed breakdown of all health metrics with 30-day trends</div>
             </div>
             <div style={{ display:'flex', gap:8 }}>
-              <button style={{ padding:'6px 14px', borderRadius:6, background:'rgba(120,200,201,0.1)',
+              <button className="hover-surface" style={{ padding:'6px 14px', borderRadius:6, background:'rgba(120,200,201,0.1)',
                 border:'1px solid rgba(120,200,201,0.3)', color:'#78c8c9',
                 fontSize:13, cursor:'pointer', fontFamily:'inherit', outline:'none' }}>All Categories</button>
-              <button style={{ padding:'6px 14px', borderRadius:6, background:'rgba(255,255,255,0.05)',
+              <button className="hover-surface" style={{ padding:'6px 14px', borderRadius:6, background:'rgba(255,255,255,0.05)',
                 border:'1px solid rgba(255,255,255,0.08)', color:'rgba(255,255,255,0.6)',
                 fontSize:13, cursor:'pointer', fontFamily:'inherit', outline:'none' }}>Month</button>
             </div>
@@ -278,7 +278,7 @@ function BiomarkersTab() {
           <div style={{ fontSize:14, color:'rgba(255,255,255,0.5)', marginBottom:14 }}>List of lab tests that client has</div>
           <div style={{ display:'flex', gap:8, marginBottom:14 }}>
             {['All','Recent'].map((f,i) => (
-              <button key={i} style={{ padding:'5px 12px', borderRadius:6, cursor:'pointer',
+              <button key={i} className="hover-surface" style={{ padding:'5px 12px', borderRadius:6, cursor:'pointer',
                 fontFamily:'inherit', fontSize:13, outline:'none',
                 background: i===1?'rgba(78,205,196,0.1)':'rgba(255,255,255,0.05)',
                 border: `1px solid ${i===1?'rgba(78,205,196,0.3)':'rgba(255,255,255,0.08)'}`,
@@ -300,7 +300,7 @@ function BiomarkersTab() {
           <div style={{ fontSize:14, color:'rgba(255,255,255,0.5)', marginBottom:14 }}>Information about genetic markers</div>
           <div style={{ display:'flex', gap:8, marginBottom:14 }}>
             {['All','Recent'].map((f,i) => (
-              <button key={i} style={{ padding:'5px 12px', borderRadius:6, cursor:'pointer',
+              <button key={i} className="hover-surface" style={{ padding:'5px 12px', borderRadius:6, cursor:'pointer',
                 fontFamily:'inherit', fontSize:13, outline:'none',
                 background: i===1?'rgba(78,205,196,0.1)':'rgba(255,255,255,0.05)',
                 border: `1px solid ${i===1?'rgba(78,205,196,0.3)':'rgba(255,255,255,0.08)'}`,
@@ -433,19 +433,19 @@ function NotesTab() {
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:12 }}>
           <div style={{ display:'flex', gap:8 }}>
             {NOTE_TAGS.map((t,i) => (
-              <button key={i} onClick={()=>setActiveTag(i)}
+              <button key={i} className="hover-surface" onClick={()=>setActiveTag(i)}
                 style={{ padding:'5px 12px', borderRadius:6, cursor:'pointer',
                   fontFamily:'inherit', fontSize:12, fontWeight:500, outline:'none',
                   background: activeTag===i ? `${t.color}18` : 'rgba(255,255,255,0.04)',
                   border: `1px solid ${activeTag===i ? `${t.color}40` : 'rgba(255,255,255,0.08)'}`,
-                  color: activeTag===i ? t.color : '#d0d0d0',
-                  transition:'all 0.15s' }}>
+                  color: activeTag===i ? t.color : '#d0d0d0' }}>
                 {t.label}
               </button>
             ))}
           </div>
           {/* Save button — Figma: color #000000 on gradient */}
-          <motion.button whileTap={{scale:0.97}}
+          <motion.button whileHover={{ opacity:0.92 }} whileTap={{scale:0.97}}
+            transition={{ duration:0.15 }}
             style={{ padding:'9px 24px', background:'linear-gradient(135deg,#78a0d1,#78c8c9)',
               border:'none', borderRadius:8, color:'#000000',
               fontSize:14, fontWeight:500, cursor:'pointer', fontFamily:'inherit' }}>

@@ -71,7 +71,7 @@ export default function TabletDashboard({ annotationsVisible }) {
                   <span style={{ fontSize:12, color:'#a1a1a1' }}>{a.time}</span>
                 </div>
                 <div style={{ fontSize:14, color:'#a1a1a1', marginBottom:10, lineHeight:1.4 }}>{a.msg}</div>
-                <span style={{ fontSize:12, fontWeight:500, color:a.link, cursor:'pointer' }}>View Details →</span>
+                <span className="hover-ghost" style={{ fontSize:12, fontWeight:500, color:a.link, cursor:'pointer' }}>View Details →</span>
               </div>
             ))}
           </div>
@@ -101,7 +101,7 @@ export default function TabletDashboard({ annotationsVisible }) {
                     <span style={{ fontSize:13, color:'#747576' }}>•</span>
                     <span style={{ fontSize:13, color:'#747576', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{s.tag}</span>
                   </div>
-                  <span style={{ fontSize:13, fontWeight:500, color:'#4ecdc4', cursor:'pointer' }}>{s.action}</span>
+                  <span className="hover-ghost" style={{ fontSize:13, fontWeight:500, color:'#4ecdc4', cursor:'pointer' }}>{s.action}</span>
                 </div>
                 <ChevronRight size={16} color="rgba(255,255,255,0.2)" style={{flexShrink:0,marginTop:4}}/>
               </div>

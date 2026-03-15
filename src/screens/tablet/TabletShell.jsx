@@ -93,13 +93,13 @@ export default function TabletShell({ onBack, annotationsVisible }) {
         </div>
 
         {/* Bell */}
-        <div style={{position:'relative',marginRight:14,cursor:'pointer'}}>
+        <div className="hover-ghost" style={{position:'relative',marginRight:14,cursor:'pointer',padding:4,borderRadius:6}}>
           <Bell size={17} color="rgba(255,255,255,0.55)"/>
           <div style={{position:'absolute',top:-2,right:-2,width:5,height:5,borderRadius:'50%',background:'#78c8c9',border:'1px solid #1f2023'}}/>
         </div>
 
         {/* Avatar */}
-        <div style={{display:'flex',alignItems:'center',gap:6,cursor:'pointer'}}>
+        <div className="hover-ghost" style={{display:'flex',alignItems:'center',gap:6,cursor:'pointer',padding:4,borderRadius:6}}>
           <div style={{width:28,height:28,borderRadius:'50%',background:'linear-gradient(135deg,#78a0d1,#78c8c9)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
             <span style={{fontSize:10,fontWeight:700,color:'white'}}>AM</span>
           </div>
@@ -107,7 +107,8 @@ export default function TabletShell({ onBack, annotationsVisible }) {
           <ChevronDown size={12} color="rgba(255,255,255,0.3)"/>
         </div>
 
-        <motion.button whileTap={{scale:0.95}} onClick={onBack}
+        <motion.button whileHover={{ background:'rgba(255,255,255,0.1)' }} whileTap={{scale:0.95}} onClick={onBack}
+          transition={{ duration:0.15 }}
           style={{marginLeft:16,padding:'4px 10px',
             background:'rgba(255,255,255,0.05)',border:'1px solid rgba(255,255,255,0.09)',
             borderRadius:6,color:'rgba(253,255,252,0.4)',fontSize:10,

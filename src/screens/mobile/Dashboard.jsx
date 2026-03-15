@@ -38,7 +38,7 @@ const statusColor = { critical:'#ff6b6b', warn:'#e67e22', optimal:'#05df72' }
 function BioageRing({ size = 130 }) {
   const cx = size / 2
   const cy = size / 2
-  const scale = size / 100
+  const scale = (size / 100) * 1.3  // +30% spread
   const ovals = [
     { rx: 38, ry: 42, stroke: '#8ED1E7', opacity: 0.5 },
     { rx: 42, ry: 36, stroke: '#69B3D3', opacity: 0.45 },
@@ -47,13 +47,8 @@ function BioageRing({ size = 130 }) {
     { rx: 34, ry: 44, stroke: '#69B3D3', opacity: 0.3 },
   ]
   return (
-    <svg width={size} height={size} style={{ position: 'absolute', inset: 0 }}>
-      <motion.g
-        initial={{ rotate: 0 }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
-        style={{ transformOrigin: `${cx}px ${cy}px` }}
-      >
+    <svg width={size} height={size} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
+      <g className="bioage-ring-rotate" style={{ transformOrigin: `${cx}px ${cy}px` }}>
         {ovals.map((o, i) => (
           <motion.ellipse
             key={i}
@@ -77,7 +72,7 @@ function BioageRing({ size = 130 }) {
             }}
           />
         ))}
-      </motion.g>
+      </g>
     </svg>
   )
 }
@@ -118,7 +113,8 @@ function MetricModal({ metric, onClose }) {
       style={{ position:'absolute', inset:0, background:'linear-gradient(160deg,#1c1d21,#0e0e12)',
         zIndex:50, overflowY:'auto', paddingBottom:40 }}>
       <div style={{ padding:'54px 24px 0', display:'flex', alignItems:'center', gap:14, marginBottom:24 }}>
-        <motion.button whileTap={{ scale:0.9 }} onClick={onClose}
+        <motion.button whileHover={{ background:'rgba(255,255,255,0.12)' }} whileTap={{ scale:0.9 }} onClick={onClose}
+          transition={{ duration:0.15 }}
           style={{ width:36, height:36, borderRadius:'50%', flexShrink:0,
             background:'rgba(255,255,255,0.06)', border:'1px solid rgba(255,255,255,0.1)',
             display:'flex', alignItems:'center', justifyContent:'center', cursor:'pointer', outline:'none' }}>
@@ -235,7 +231,7 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
             </div>
 
             {/* Center: Bioage — 43 (largest) + BIOAGE */}
-            <div style={{ position: 'relative', width: 130, height: 130, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ position: 'relative', width: 130, height: 130, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
               <BioageRing size={130} />
               <span style={{ position: 'relative', zIndex: 1, fontSize: 54, fontWeight: 300, color: '#ffffff', lineHeight: 1 }}>{BIO.bioAge}</span>
               <div style={{ position: 'relative', zIndex: 1, fontSize: 10, fontWeight: 500, color: '#ffffff', letterSpacing: '0.08em', marginTop: 4 }}>BIOAGE</div>
@@ -253,10 +249,14 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
         </div>
 
         {/* ── Add more data banner ── */}
-        <motion.div initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.1 }}
-          style={{ margin:'10px 24px 0', background:'rgba(255,255,255,0.03)',
-            border:'1px solid rgba(255,255,255,0.07)', borderRadius:14, padding:'12px 14px',
-            display:'flex', alignItems:'center', gap:12, cursor:'pointer' }}>
+        <motion.div initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.2, delay:0.04 }}
+          style={{ margin:'10px 24px 0' }}>
+          <motion.div
+            whileHover={{ background:'rgba(255,255,255,0.06)' }}
+            transition={{ duration:0.15 }}
+            style={{ background:'rgba(255,255,255,0.03)',
+              border:'1px solid rgba(255,255,255,0.07)', borderRadius:14, padding:'12px 14px',
+              display:'flex', alignItems:'center', gap:12, cursor:'pointer' }}>
           {/* Sync icon */}
           <div style={{ width:34, height:34, borderRadius:10, background:'rgba(120,200,201,0.1)',
             display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
@@ -276,10 +276,11 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
             stroke="rgba(253,255,252,0.25)" strokeWidth={2} strokeLinecap="round">
             <path d="M9 18l6-6-6-6" />
           </svg>
+          </motion.div>
         </motion.div>
 
         {/* ── Get Your Personalized Plan ── */}
-        <motion.div initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.15 }}
+        <motion.div initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.2, delay:0.06 }}
           style={{ margin:'10px 24px 0', padding:'20px 16px 16px' }}>
           <div style={{ textAlign:'center', marginBottom:16 }}>
             <div style={{ fontSize:16, fontWeight:600, color:'#fdfffc', marginBottom:10 }}>
@@ -290,7 +291,8 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
               you achieve your goals and improve longevity, performance, and health
             </div>
           </div>
-          <motion.button whileTap={{ scale:0.97 }}
+          <motion.button whileHover={{ opacity:0.92 }} whileTap={{ scale:0.97 }}
+            transition={{ duration:0.15 }}
             style={{ width:'100%', padding:'15px 0',
               background:'linear-gradient(90deg,#78a0d1 0%,#78c8c9 100%)',
               border:'none', borderRadius:14, color:'#0a0a0a', fontSize:14, fontWeight:700,
@@ -300,7 +302,7 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
         </motion.div>
 
         {/* ── Status legend ── */}
-        <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.2 }}
+        <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.15, delay:0.1 }}
           style={{ margin:'4px 24px 0', display:'flex', alignItems:'center', justifyContent:'center', textAlign:'center', gap:41, height:40 }}>
           {[['#ff6b6b','Critical'],['#e67e22','Monitor'],['#05df72','Optimal']].map(([c,label]) => (
             <div key={label} style={{ display:'flex', alignItems:'center', gap:6 }}>
@@ -311,12 +313,12 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
         </motion.div>
 
         {/* ── Key Metrics ── */}
-        <motion.div initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.22 }}
+        <motion.div initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.2, delay:0.1 }}
           style={{ margin:'18px 24px 0' }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10 }}>
             <span style={{ fontSize:12, fontWeight:600, color:'rgba(253,255,252,0.45)',
               letterSpacing:'0.08em', textTransform:'uppercase' }}>Key Metrics</span>
-            <button style={{ background:'none', border:'none', cursor:'pointer', padding:4, lineHeight:0, outline:'none' }}>
+            <button className="hover-icon-btn" style={{ background:'rgba(255,255,255,0.06)', border:'none', borderRadius:8, cursor:'pointer', padding:4, lineHeight:0, outline:'none' }}>
               <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
                 stroke="rgba(253,255,252,0.3)" strokeWidth={1.5} strokeLinecap="round">
                 <circle cx="12" cy="12" r="3" />
@@ -327,15 +329,18 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
 
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:8 }}>
             {KEY_METRICS.map((m, i) => (
-              <motion.div key={m.id} whileTap={{ scale:0.95 }}
-                initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }}
-                transition={{ delay:0.24 + i * 0.05 }}
-                onClick={() => setActiveMetric(m)}
-                style={{ padding:'14px 14px 20px', position:'relative',
-                  background: m.isAlert ? 'rgba(255,32,86,0.07)' : 'rgba(255,255,255,0.04)',
-                  border:`1px solid ${m.isAlert ? 'rgba(255,32,86,0.32)' : 'rgba(255,255,255,0.07)'}`,
-                  borderRadius:14, cursor:'pointer',
-                  gridColumn: i === 4 ? 'span 2' : 'auto' }}>
+              <motion.div key={m.id} initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }}
+                transition={{ duration:0.25, delay:0.08 + i * 0.03 }}>
+                <motion.div
+                  whileHover={{ background: m.isAlert ? 'rgba(255,32,86,0.12)' : 'rgba(255,255,255,0.08)' }}
+                  whileTap={{ scale:0.95 }}
+                  transition={{ duration:0.15 }}
+                  onClick={() => setActiveMetric(m)}
+                  style={{ padding:'14px 14px 20px', position:'relative',
+                    background: m.isAlert ? 'rgba(255,32,86,0.07)' : 'rgba(255,255,255,0.04)',
+                    border:`1px solid ${m.isAlert ? 'rgba(255,32,86,0.32)' : 'rgba(255,255,255,0.07)'}`,
+                    borderRadius:14, cursor:'pointer',
+                    gridColumn: i === 4 ? 'span 2' : 'auto' }}>
 
                 {/* Status dot + trend arrow */}
                 <div style={{ position:'absolute', top:10, right:10,
@@ -370,13 +375,14 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
                   {m.label}
                 </div>
                 <div style={{ fontSize:22, fontWeight:300, color:'#ffffff' }}>{m.value}</div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
         {/* ── Health Categories ── */}
-        <motion.div initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.32 }}
+        <motion.div initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.25, delay:0.18 }}
           style={{ margin:'20px 24px 0' }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10 }}>
             <span style={{ fontSize:12, fontWeight:600, color:'rgba(253,255,252,0.45)',
@@ -386,14 +392,16 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
 
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:8 }}>
             {HEALTH_CATS.map((cat, i) => (
-              <motion.div key={i} whileTap={{ scale:0.97 }}
-                initial={{ opacity:0, scale:0.96 }} animate={{ opacity:1, scale:1 }}
-                transition={{ delay:0.34 + i * 0.05 }}
-                onClick={onMetricClick}
-                style={{ padding:'12px 14px 14px', position:'relative',
-                  background:`${cat.fill}0d`,
-                  border:`1px solid ${cat.status === 'critical' ? cat.fill + '40' : 'rgba(255,255,255,0.07)'}`,
-                  borderRadius:14, cursor:'pointer' }}>
+              <motion.div key={i} initial={{ opacity:0, scale:0.96 }} animate={{ opacity:1, scale:1 }}
+                transition={{ duration:0.25, delay:0.2 + i * 0.03 }}>
+                <motion.div
+                  whileHover={{ filter:'brightness(1.15)' }} whileTap={{ scale:0.97 }}
+                  transition={{ duration:0.15 }}
+                  onClick={onMetricClick}
+                  style={{ padding:'12px 14px 14px', position:'relative',
+                    background:`${cat.fill}0d`,
+                    border:`1px solid ${cat.status === 'critical' ? cat.fill + '40' : 'rgba(255,255,255,0.07)'}`,
+                    borderRadius:14, cursor:'pointer' }}>
 
                 {/* Status dot */}
                 <div style={{ position:'absolute', top:10, right:10,
@@ -408,6 +416,7 @@ export default function Dashboard({ onMetricClick, annotationsVisible }) {
                 <div style={{ fontSize:11, color:'rgba(253,255,252,0.55)', lineHeight:1.35 }}>
                   {cat.label}
                 </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>

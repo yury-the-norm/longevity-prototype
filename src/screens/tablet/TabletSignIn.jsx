@@ -82,9 +82,9 @@ export default function TabletSignIn({ onSignIn }) {
               placeholder="••••••••" style={inp({paddingRight:40})}
               onFocus={e=>e.target.style.borderColor='#78c8c9'}
               onBlur={e=>e.target.style.borderColor=error?'rgba(255,32,86,0.4)':'rgba(255,255,255,0.1)'}/>
-            <button onClick={()=>setShowPw(!showPw)} style={{
+            <button className="hover-ghost" onClick={()=>setShowPw(!showPw)} style={{
               position:'absolute', right:12, top:'50%', transform:'translateY(-50%)',
-              background:'none', border:'none', cursor:'pointer', color:'rgba(255,255,255,0.3)', padding:0 }}>
+              background:'none', border:'none', cursor:'pointer', color:'rgba(255,255,255,0.3)', padding:4, borderRadius:4 }}>
               {showPw ? <EyeOff size={14}/> : <Eye size={14}/>}
             </button>
           </div>
@@ -92,10 +92,10 @@ export default function TabletSignIn({ onSignIn }) {
 
         {/* Remember me toggle — Figma: _Switch/Base #78c8c9, Ellipse #1a1b1f */}
         <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:20 }}>
-          <div onClick={()=>setRemember(!remember)} style={{
+          <div className="hover-ghost" onClick={()=>setRemember(!remember)} style={{
             width:36, height:18, borderRadius:100,
             background: remember ? '#78c8c9' : 'rgba(255,255,255,0.15)',
-            position:'relative', cursor:'pointer', transition:'background 0.2s', flexShrink:0 }}>
+            position:'relative', cursor:'pointer', flexShrink:0 }}>
             <div style={{ position:'absolute', top:2,
               left: remember ? 20 : 2, width:14, height:14,
               borderRadius:'50%', background: remember ? '#1a1b1f' : 'rgba(255,255,255,0.6)',
@@ -123,7 +123,7 @@ export default function TabletSignIn({ onSignIn }) {
 
         <div style={{ textAlign:'center', marginTop:14 }}>
           <span style={{ fontSize:12, color:'rgba(253,255,252,0.4)' }}>Don't have an account? </span>
-          <span style={{ fontSize:12, color:'#78c8c9', cursor:'pointer', fontWeight:500 }}>sign up</span>
+          <span className="hover-ghost" style={{ fontSize:12, color:'#78c8c9', cursor:'pointer', fontWeight:500 }}>sign up</span>
         </div>
       </motion.div>
     </div>

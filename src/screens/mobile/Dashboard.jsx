@@ -48,20 +48,36 @@ function BioageRing({ size = 130 }) {
   ]
   return (
     <svg width={size} height={size} style={{ position: 'absolute', inset: 0 }}>
-      {ovals.map((o, i) => (
-        <ellipse
-          key={i}
-          cx={cx}
-          cy={cy}
-          rx={o.rx * scale}
-          ry={o.ry * scale}
-          fill="none"
-          stroke={o.stroke}
-          strokeWidth={1.2}
-          strokeOpacity={o.opacity}
-          transform={`rotate(${i * 22} ${cx} ${cy})`}
-        />
-      ))}
+      <motion.g
+        initial={{ rotate: 0 }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
+        style={{ transformOrigin: `${cx}px ${cy}px` }}
+      >
+        {ovals.map((o, i) => (
+          <motion.ellipse
+            key={i}
+            cx={cx}
+            cy={cy}
+            rx={o.rx * scale}
+            ry={o.ry * scale}
+            fill="none"
+            stroke={o.stroke}
+            strokeWidth={1.2}
+            strokeOpacity={o.opacity}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              opacity: { duration: 0.33, delay: 0.1 + i * 0.05 },
+              scale: { duration: 0.33, delay: 0.1 + i * 0.05, ease: [0.22, 1, 0.36, 1] },
+            }}
+            style={{
+              transformOrigin: `${cx}px ${cy}px`,
+              transform: `rotate(${i * 22}deg)`,
+            }}
+          />
+        ))}
+      </motion.g>
     </svg>
   )
 }
